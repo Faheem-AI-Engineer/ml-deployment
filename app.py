@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 st.markdown("""
 <style>
 .share-box {
-    padding: 1.5rem;
+    padding: 1rem;
     background: #f0f8ff;
     border-radius: 12px;
     border: 2px solid #4CAF50;
