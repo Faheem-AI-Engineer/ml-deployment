@@ -5,11 +5,8 @@ from config import *
 from retriever import initialize_pinecone, create_hybrid_retriever
 from document_processor import convert_pdf_to_markdown, process_and_chunk_document
 from llm_chain import initialize_llm, create_retrieval_chain
-from streamlit import config as _config
-_config.set_option("global.wideMode", True)
+st.set_page_config(layout="wide")
 
-# Initialize torch settings
-torch.classes.__path__ = []
 
 st.title("Ask PDF")
 
