@@ -1,16 +1,32 @@
-import os
-import streamlit as st
-import torch
-from config import *
-from retriever import initialize_pinecone, create_hybrid_retriever
-from document_processor import convert_pdf_to_markdown, process_and_chunk_document
-from llm_chain import initialize_llm, create_retrieval_chain
+# ... (keep all imports and config the same)
 
 st.set_page_config(layout="wide")
 
-# Custom CSS with distinct themes
+# Add this CSS adjustment at the top of your existing CSS
 st.markdown("""
 <style>
+/* Adjust main container padding */
+.stApp {
+    padding-top: 1rem;
+}
+
+/* Title styling */
+.custom-title {
+    font-size: 2.2rem !important;
+    margin-bottom: 0.5rem !important;
+    color: #2c3e50;
+}
+
+/* Tagline styling */
+.tagline {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #4CAF50;
+}
+
+/* Keep existing styles below */
 .share-box {
     padding: 1rem;
     background: #f0f8ff;
@@ -20,41 +36,17 @@ st.markdown("""
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.social-icons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin: 1.5rem 0;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-}
-
-.testimonial {
-    padding: 1.2rem;
-    margin: 1rem 0;
-    border-left: 4px solid #4CAF50;
-    background: #f8fff8;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.testimonial:nth-child(even) {
-    border-left-color: #2196F3;
-    background: #f5fbff;
-}
-
-.social-button {
-    transition: transform 0.2s ease-in-out;
-}
-
-.social-button:hover {
-    transform: scale(1.1);
-}
+# ... (keep rest of the existing CSS the same)
 </style>
 """, unsafe_allow_html=True)
 
-st.title("📚 Ask PDF - Smart Document Analysis")
+# Modified title section
+st.markdown('<h1 class="custom-title">📚 Ask PDF</h1>', unsafe_allow_html=True)
+st.markdown("""
+<div class="tagline">
+Instant Answers from Your Documents • AI-Powered Insights • Smart PDF Analysis
+</div>
+""", unsafe_allow_html=True)
 
 # Social Sharing Section
 with st.sidebar:
