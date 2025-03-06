@@ -59,7 +59,7 @@ st.title("📚 Ask PDF - Smart Document Analysis")
 # Social Sharing Section
 with st.sidebar:
     st.header("Share the Knowledge!")
-    st.markdown('<div class="share-box">', unsafe_allow_html=True)
+    #st.markdown('<div class="share-box">', unsafe_allow_html=True)
     st.write("🌟 Love using Ask PDF? Share with your network!")
     
     # Social Icons with custom styling
