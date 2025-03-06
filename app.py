@@ -63,7 +63,7 @@ with st.sidebar:
     st.write("🌟 Love using Ask PDF? Share with your network!")
     
     # Social Icons with custom styling
-    st.markdown('<div class="social-icons">', unsafe_allow_html=True)
+    #st.markdown('<div class="social-icons">', unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     with col1:
         st.markdown('[<img src="https://img.icons8.com/color/48/twitter--v1.png" class="social-button" width="32">](https://twitter.com/intent/tweet?text=Check%20out%20AskPDF!)', 
