@@ -7,7 +7,8 @@ from document_processor import convert_pdf_to_markdown, process_and_chunk_docume
 from llm_chain import initialize_llm, create_retrieval_chain
 st.set_page_config(layout="wide")
 torch.classes.__path__ = []
-# Add this CSS adjustment at the top of your existing CSS
+
+# Add CSS
 st.markdown("""
 <style>
 /* Adjust main container padding */
@@ -45,7 +46,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Modified title section
+#  title section
 st.markdown('<h1 class="custom-title">📚 Ask PDF - Smart Document Analysis</h1>', unsafe_allow_html=True)
 st.markdown("""
 <div class="tagline">
