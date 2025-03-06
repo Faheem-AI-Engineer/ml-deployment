@@ -28,6 +28,9 @@ st.title("📚 Ask PDF - Smart Document Analysis")
 
 # Social Sharing Sidebar (Icons Only)
 with st.sidebar:
+    st.header("Share the Knowledge!")
+    st.markdown('<div class="share-box">', unsafe_allow_html=True)
+    st.write("🌟 Love using Ask PDF? Share with your network!")
     st.markdown('<div class="social-icons">', unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     with col1:
