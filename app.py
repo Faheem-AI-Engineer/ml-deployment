@@ -34,7 +34,7 @@ with st.sidebar:
     st.markdown('<div class="social-icons">', unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.link_button("🐦", "https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20PDF%20analyzer%20AI%20app%20I%20found%20👉&url=https://your-app-url.com")
+        st.link_button("🐦", "https://twitter.com")
     with col2:
         st.link_button("🔗", "https://www.linkedin.com/shareArticle?mini=true&url=https://your-app-url.com&title=Ask%20PDF%20AI%20Analyzer")
     with col3:
