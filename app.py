@@ -8,67 +8,40 @@ from llm_chain import initialize_llm, create_retrieval_chain
 
 st.set_page_config(layout="wide")
 
-# Add custom CSS for social features
+# Simplified CSS for social icons
 st.markdown("""
 <style>
-.share-box {
-    padding: 15px;
-    background: #f0f2f6;
-    border-radius: 10px;
-    margin: 10px 0;
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
 }
-.testimonial {
-    font-style: italic;
-    color: #666;
-    border-left: 3px solid #4CAF50;
-    padding-left: 15px;
-    margin: 15px 0;
+.social-icons a {
+    font-size: 24px;
+    text-decoration: none;
 }
 </style>
 """, unsafe_allow_html=True)
 
 st.title("📚 Ask PDF - Smart Document Analysis")
 
-# Social Sharing Sidebar
+# Social Sharing Sidebar (Icons Only)
 with st.sidebar:
-    st.header("Share the Knowledge!")
-    st.markdown('<div class="share-box">', unsafe_allow_html=True)
-    st.write("🌟 Love using Ask PDF? Share with your network!")
-    
-    # Social Sharing Buttons
+    st.markdown('<div class="social-icons">', unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.link_button("Twitter", "https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20PDF%20analyzer%20AI%20app%20I%20found%20👉&url=https://your-app-url.com")
+        st.link_button("🐦", "https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20PDF%20analyzer%20AI%20app%20I%20found%20👉&url=https://your-app-url.com")
     with col2:
-        st.link_button("LinkedIn", "https://www.linkedin.com/shareArticle?mini=true&url=https://your-app-url.com&title=Ask%20PDF%20AI%20Analyzer")
+        st.link_button("🔗", "https://www.linkedin.com/shareArticle?mini=true&url=https://your-app-url.com&title=Ask%20PDF%20AI%20Analyzer")
     with col3:
-        st.link_button("Email", "mailto:?subject=Check%20out%20Ask%20PDF&body=I%20found%20this%20great%20PDF%20analysis%20tool%20you%20might%20like%20👉%20https://your-app-url.com")
-    
+        st.link_button("📧", "mailto:?subject=Check%20out%20Ask%20PDF&body=I%20found%20this%20great%20PDF%20analysis%20tool%20you%20might%20like%20👉%20https://your-app-url.com")
     st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Referral Program
-    st.subheader("🎁 Earn Rewards")
-    referral_code = st.text_input("Enter referral code (if any)")
-    if st.button("Apply Referral"):
-        st.success("🎉 You've earned 5 bonus analysis credits!")
-    
+
     # Testimonials
     st.subheader("💬 What Users Say")
     st.markdown('<div class="testimonial">"This app saved me hours of research time! The AI answers are surprisingly accurate."<br>- Sarah, Researcher</div>', unsafe_allow_html=True)
-    st.markdown('<div class="testimonial">"Shared with my whole team - now we all analyze documents 2x faster!"<br>- Mark, Project Manager</div>', unsafe_allow_html=True)
-
-# Collaboration Features
-with st.expander("👥 Team Collaboration"):
-    col1, col2 = st.columns(2)
-    with col1:
-        st.write("**Invite Team Members**")
-        emails = st.text_input("Enter emails to invite (comma-separated)")
-        if st.button("Send Invites"):
-            st.success(f"Invites sent to {emails}!")
-    with col2:
-        st.write("**Shared Documents**")
-        st.checkbox("Make this document public to team")
-        st.checkbox("Enable real-time collaboration")
+    st.markdown('<div class="testimonial">"Perfect for quick document analysis - my new go-to tool!"<br>- Mark, Project Manager</div>', unsafe_allow_html=True)
 
 # Main Content
 @st.cache_resource
@@ -81,7 +54,7 @@ def setup_resources():
 retriever, embeddings, llm = setup_resources()
 rag_chain = create_retrieval_chain(retriever, llm)
 
-# Enhanced File Upload with Progress
+# File Upload Handling
 uploaded_file = st.file_uploader("📤 Upload PDF (Max 100MB)", type="pdf")
 if uploaded_file:
     if "processed_files" not in st.session_state:
@@ -117,7 +90,7 @@ if uploaded_file:
     st.session_state.docs = current_file["docs"]
     st.session_state.content = current_file["content"]
 
-    # Interactive Q&A with History
+    # Interactive Q&A
     st.subheader("💬 Document Chat")
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -136,31 +109,3 @@ if uploaded_file:
                 response = rag_chain.invoke(prompt)
                 st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
-
-    # Share Answer Feature
-    st.markdown('<div class="share-box">', unsafe_allow_html=True)
-    st.write("📤 Share this Q&A session:")
-    share_cols = st.columns(4)
-    with share_cols[0]:
-        if st.button("📧 Email", help="Send this Q&A via email"):
-            st.info("Email sharing coming soon!")
-    with share_cols[1]:
-        if st.button("💬 Slack", help="Share to Slack"):
-            st.info("Slack integration coming soon!")
-    with share_cols[2]:
-        if st.button("📱 WhatsApp", help="Share to WhatsApp"):
-            st.info("WhatsApp sharing coming soon!")
-    with share_cols[3]:
-        if st.button("🔗 Get Share Link"):
-            st.code("https://your-app-url.com/share/12345", language="markdown")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# Public Examples Section
-st.subheader("🚀 Popular Public Documents")
-example_cols = st.columns(3)
-with example_cols[0]:
-    st.markdown("**Research Papers**\n\n10+ papers analyzed daily")
-with example_cols[1]:
-    st.markdown("**Legal Documents**\n\n100+ contracts processed")
-with example_cols[2]:
-    st.markdown("**Technical Manuals**\n\n50+ manuals indexed")
