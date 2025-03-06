@@ -46,7 +46,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Modified title section
-st.markdown('<h1 class="custom-title">📚 Ask PDF</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="custom-title">📚 Ask PDF - Smart Document Analysis</h1>', unsafe_allow_html=True)
 st.markdown("""
 <div class="tagline">
 Instant Answers from Your Documents • AI-Powered Insights • Smart PDF Analysis
